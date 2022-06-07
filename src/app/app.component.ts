@@ -1,9 +1,9 @@
-import { Component, VERSION } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'my-app',
+  selector: 'app',
   template: '<store></store>',
 })
 export class AppComponent {
-  name = 'Angular ' + VERSION.major;
+  title = 'SportsStore';
 }

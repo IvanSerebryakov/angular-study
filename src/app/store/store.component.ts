@@ -8,7 +8,7 @@ import { ProductRepository } from '../model/product.repository';
   templateUrl: 'store.component.html',
 })
 export class StoreComponent {
-  public selectedCategory = null;
+  public selectedCategory = '';
   public productsPerPage = 4;
   public selectedPage = 1;
 
@@ -26,7 +26,7 @@ export class StoreComponent {
   }
 
   changeCategory(newCategory?: string) {
-    this.selectedCategory = newCategory;
+    this.selectedCategory = newCategory as string;
   }
 
   changePage(newPage: number) {
@@ -38,9 +38,21 @@ export class StoreComponent {
     this.changePage(1);
   }
 
-  get pageNumbers(): number[] {
-    return Array(Math.ceil(this.repository
-      .getProducts(this.selectedCategory).length / this.productsPerPage))
-      .fill(0).map((x, i) => i + 1)    
+  get pageCount(): number {
+    return Math.ceil(
+      this.repository.getProducts(this.selectedCategory).length /
+        this.productsPerPage
+    );
   }
+
+  // get pageNumbers(): number[] {
+  //   return Array(
+  //     Math.ceil(
+  //       this.repository.getProducts(this.selectedCategory).length /
+  //         this.productsPerPage
+  //     )
+  //   )
+  //     .fill(0)
+  //     .map((x, i) => i + 1);
+  // }
 }

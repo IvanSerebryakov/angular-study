@@ -13,18 +13,18 @@ export class ProductRepository {
       this.categories = data
         .map((p) => p.category)
         .filter((c, index, array) => array.indexOf(c) == index)
-        .sort();
+        .sort() as string[];
     });
   }
 
-  getProducts(category: string = null): Product[] {
+  getProducts(category: string = ''): Product[] {
     return this.products.filter(
       (p) => category == null || category == p.category
     );
   }
 
   getProduct(id: number): Product {
-    return this.products.find((p) => p.id == id);
+    return this.products.find((p) => p.id == id) as Product;
   }
 
   getCategories(): string[] {
